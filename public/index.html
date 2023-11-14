@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="signInG()">Sign in with Google</button>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    import { getAuth, FacebookAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBd2lwkV1K-KR4yXIftTETTClFAwrar29o",
+      authDomain: "class-work-373ee.firebaseapp.com",
+      projectId: "class-work-373ee",
+      storageBucket: "class-work-373ee.appspot.com",
+      messagingSenderId: "904805784231",
+      appId: "1:904805784231:web:d5e33080a48b533bfa9982",
+      measurementId: "G-ZD1FEN728W"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new FacebookAuthProvider();
+
+    const signInG = () => {
+      signInWithPopup(auth, provider)
+    .then((result)=>{
+      const user = result.user;
+      console.log(user)
+      show,innerHTML += `
+      <h1>Welcome ${user.displayName}</h1>
+      <h1>Here is your email address ${user.email}</h1>
+      <img src=${user.photoURL} alt="profile pic"/>
+      `
+
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+    }
+    window.signInG = signInG
+  </script>
+</body>
+</html>
